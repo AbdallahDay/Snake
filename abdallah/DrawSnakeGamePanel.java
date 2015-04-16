@@ -1,4 +1,4 @@
-package com.clara;
+package abdallah;
 
 import java.awt.*;
 import java.util.LinkedList;
@@ -9,6 +9,7 @@ import javax.swing.JPanel;
  * 
  * @author Clara
  *
+ * Abdallah Day
  */
 public class DrawSnakeGamePanel extends JPanel {
 	

@@ -1,9 +1,12 @@
-package com.clara;
+package abdallah;
 
 import java.util.Timer;
 
 import javax.swing.*;
 
+/**
+ * Abdallah Day
+ */
 
 public class SnakeGame {
 

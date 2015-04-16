@@ -1,7 +1,8 @@
-package com.clara;
+package abdallah;
 
 /** Keeps track of, and display the user's score
- * 
+ *
+ * Abdallah Day
  */
 
 

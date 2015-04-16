@@ -1,7 +1,11 @@
-package com.clara;
+package abdallah;
 
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
+
+/**
+ * Abdallah Day
+ */
 
 public class GameControls implements KeyListener{
 	

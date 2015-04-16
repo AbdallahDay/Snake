@@ -1,6 +1,10 @@
-package com.clara;
+package abdallah;
 
 import java.util.TimerTask;
+
+/**
+ * Abdallah Day
+ */
 
 public class GameClock extends TimerTask {
 

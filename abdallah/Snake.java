@@ -1,7 +1,11 @@
-package com.clara;
+package abdallah;
 
 import java.awt.Point;
 import java.util.LinkedList;
+
+/**
+ * Abdallah Day
+ */
 
 public class Snake {
 

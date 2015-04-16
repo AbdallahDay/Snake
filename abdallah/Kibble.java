@@ -1,6 +1,10 @@
-package com.clara;
+package abdallah;
 
 import java.util.Random;
+
+/**
+ * Abdallah Day
+ */
 
 public class Kibble {
 
