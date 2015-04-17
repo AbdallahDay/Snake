@@ -42,26 +42,25 @@ public class DrawSnakeGamePanel extends JPanel {
         gameStage = SnakeGame.getGameStage();
         
         switch (gameStage) {
-        case 1: {
-        	displayInstructions(g);
-        	break;
-        } 
-        case 2 : {
-        	displayGame(g);
-        	break;
-        }
-        case 3: {
-        	displayGameOver(g);
-        	break;
-        }
-        case 4: {
-        	displayGameWon(g);
-        	break;
-        }
-        }
-        
-        
-        
+			case SnakeGame.BEFORE_GAME: {
+				displayInstructions(g);
+				break;
+			}
+			case SnakeGame.DURING_GAME: {
+				displayGame(g);
+				break;
+			}
+			case SnakeGame.GAME_OVER: {
+				displayGameOver(g);
+				break;
+			}
+			case SnakeGame.GAME_WON: {
+				displayGameWon(g);
+				break;
+			}
+		}
+
+		//TODO: add maze and warp options
     }
 
 	private void displayGameWon(Graphics g) {
@@ -85,7 +84,8 @@ public class DrawSnakeGamePanel extends JPanel {
 		g.drawString(newHighScore, 150, 400);
 		
 		g.drawString("press a key to play again", 150, 350);
-		g.drawString("Press q to quit the game",150,400);		
+		g.drawString("press 's' to change game settings", 150, 400);
+		g.drawString("Press 'q' to quit the game",150,450);
     			
 	}
 
@@ -145,8 +145,9 @@ public class DrawSnakeGamePanel extends JPanel {
 	}
 
 	private void displayInstructions(Graphics g) {
-        g.drawString("Press any key to begin!",100,200);		
-        g.drawString("Press q to quit the game",100,300);		
+        g.drawString("Press any key to begin!",100,200);
+		g.drawString("press 's' to change game settings", 100, 250);
+        g.drawString("Press 'q' to quit the game",100,300);
     	}
 	
     

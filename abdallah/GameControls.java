@@ -24,9 +24,23 @@ public class GameControls implements KeyListener{
 		
 		//Get the component which generated this event
 		//Hopefully, a DrawSnakeGamePanel object.
-		//It would be a good idea to catch a ClassCastException here. 
-		
+		//It would be a good idea to catch a ClassCastException here.
+
 		DrawSnakeGamePanel panel = (DrawSnakeGamePanel)ev.getComponent();
+
+		if (ev.getKeyChar() == 's' &&
+				(SnakeGame.getGameStage() == SnakeGame.BEFORE_GAME ||
+				SnakeGame.getGameStage() == SnakeGame.GAME_OVER)) {
+			// when a key that sends a unicode character is pressed
+			// the keyPressed() method is called before the keyTyped() method
+			// and since going to settings does not exit the game, we need to verify if the 's' key is pressed here
+			// otherwise the game would start while settings are displayed (very messy)
+
+			dlgSettings settings = new dlgSettings();
+			settings.pack();
+			settings.setVisible(true);
+			return;
+		}
 
 		if (SnakeGame.getGameStage() == SnakeGame.BEFORE_GAME){
 			//Start the game

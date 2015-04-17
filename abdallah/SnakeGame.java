@@ -16,7 +16,11 @@ public class SnakeGame {
 	public static int xSquares ;
 	public static int ySquares ;
 
-	public final static int squareSize = 50;
+	//Square size
+	static final int SMALL_SQUARES = 25;	//25x25-pixel squares
+	static final int LARGE_SQUARES = 50;	//50x50-pixel squares
+
+	public static int squareSize = SMALL_SQUARES;	//defaults at 50x50
 
 	protected static Snake snake ;
 
@@ -35,18 +39,31 @@ public class SnakeGame {
 	private static int gameStage = BEFORE_GAME;  //use this to figure out what should be happening. 
 	//Other classes like Snake and DrawSnakeGamePanel will need to query this, and change it's value
 
-	protected static long clockInterval = 500; //controls game speed
+	//represent game speed options (in milliseconds)
+	static final int ROSY_BOA = 800;
+	static final int KING_COBRA = 500;
+	static final int BLACK_MAMBA = 200;
+
+	protected static int gameSpeed = KING_COBRA;	//controls game speed (defaults to medium: 500 ms)
 	//Every time the clock ticks, the snake moves
 	//This is the time between clock ticks, in milliseconds
 	//1000 milliseconds = 1  second.
 
-	static JFrame snakeFrame;
+	public static boolean mazeOn = false;
+
+	public static boolean warpWallsOn = false;
+
+	static JFrame snakeFrame = null;
 	static DrawSnakeGamePanel snakePanel;
 	//Framework for this class adapted from the Java Swing Tutorial, FrameDemo and Custom Painting Demo. You should find them useful too.
 	//http://docs.oracle.com/javase/tutorial/displayCode.html?code=http://docs.oracle.com/javase/tutorial/uiswing/examples/components/FrameDemoProject/src/components/FrameDemo.java
 	//http://docs.oracle.com/javase/tutorial/uiswing/painting/step2.html
 
 	private static void createAndShowGUI() {
+		if (snakeFrame != null) {
+			snakeFrame.dispose();
+		}
+
 		//Create and set up the window.
 		snakeFrame = new JFrame();
 		snakeFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -83,7 +100,7 @@ public class SnakeGame {
 	protected static void newGame() {
 		Timer timer = new Timer();
 		GameClock clockTick = new GameClock(snake, kibble, score, snakePanel);
-		timer.scheduleAtFixedRate(clockTick, 0 , clockInterval);
+		timer.scheduleAtFixedRate(clockTick, 0, gameSpeed);
 	}
 
 	public static void main(String[] args) {
@@ -91,16 +108,30 @@ public class SnakeGame {
 		//creating and showing this application's GUI.
 		SwingUtilities.invokeLater(new Runnable() {
 			public void run() {
-				initializeGame();
-				createAndShowGUI();
+				restart();
 			}
 		});
 	}
 
-
+	public static void restart() {
+		initializeGame();
+		createAndShowGUI();
+	}
 
 	public static int getGameStage() {
 		return gameStage;
+	}
+
+	public static void setGameStage(int gameStage) {
+		SnakeGame.gameStage = gameStage;
+	}
+
+	public static int getGameSpeed() {
+		return gameSpeed;
+	}
+
+	public static void setGameSpeed(int speed) {
+		SnakeGame.gameSpeed = speed;
 	}
 
 	public static boolean gameEnded() {
@@ -108,9 +139,5 @@ public class SnakeGame {
 			return true;
 		}
 		return false;
-	}
-
-	public static void setGameStage(int gameStage) {
-		SnakeGame.gameStage = gameStage;
 	}
 }
