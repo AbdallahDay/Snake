@@ -1,5 +1,6 @@
 package abdallah;
 
+import java.util.ArrayList;
 import java.util.Timer;
 
 import javax.swing.*;
@@ -20,7 +21,9 @@ public class SnakeGame {
 	static final int SMALL_SQUARES = 25;	//25x25-pixel squares
 	static final int LARGE_SQUARES = 50;	//50x50-pixel squares
 
-	public static int squareSize = SMALL_SQUARES;	//defaults at 50x50
+	public static int squareSize = LARGE_SQUARES;	//defaults at 50x50
+
+	public static ArrayList<int[]> largeSquareMazeLines = new ArrayList<int[]>();
 
 	protected static Snake snake ;
 
@@ -89,6 +92,20 @@ public class SnakeGame {
 		//set up score, snake and first kibble
 		xSquares = xPixelMaxDimension / squareSize;
 		ySquares = yPixelMaxDimension / squareSize;
+
+		// add maze line coordinates {x1, y1, x2, y2}
+		largeSquareMazeLines.add(new int[]{50, 150, 50, 400});
+		largeSquareMazeLines.add(new int[]{50, 400, 250, 400});
+		largeSquareMazeLines.add(new int[]{250, 350, 250, 450});
+		largeSquareMazeLines.add(new int[]{250, 350, 350, 350});
+		largeSquareMazeLines.add(new int[]{400, 450, 450, 450});
+		largeSquareMazeLines.add(new int[]{450, 300, 450, 450});
+		largeSquareMazeLines.add(new int[]{450, 100, 450, 250});
+		largeSquareMazeLines.add(new int[]{250, 250, 450, 250});
+		largeSquareMazeLines.add(new int[]{250, 150, 250, 250});
+		largeSquareMazeLines.add(new int[]{150, 50, 150, 150});
+		largeSquareMazeLines.add(new int[]{150, 50, 350, 50});
+		largeSquareMazeLines.add(new int[]{350, 50, 350, 100});
 
 		snake = new Snake(xSquares, ySquares, squareSize);
 		kibble = new Kibble(snake);

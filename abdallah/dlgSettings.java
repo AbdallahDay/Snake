@@ -58,15 +58,24 @@ public class dlgSettings extends JDialog {
         switch (currentSquareSize) {
             case SnakeGame.SMALL_SQUARES: {
                 squareSizeComboBox.setSelectedIndex(SMALL);
+                break;
             }
             case SnakeGame.LARGE_SQUARES: {
                 squareSizeComboBox.setSelectedIndex(LARGE);
+                break;
             }
         }
 
         //check boxes
         mazeCheckBox.setSelected(SnakeGame.mazeOn);
         warpWallsCheckBox.setSelected(SnakeGame.warpWallsOn);
+
+        if (squareSizeComboBox.getSelectedIndex() == SMALL) {
+            //no maze lines yet for small square grid
+            mazeCheckBox.setEnabled(false);
+        }
+
+        warpWallsCheckBox.setEnabled(false);    //warp walls not implemented
 
         buttonOK.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
@@ -94,6 +103,17 @@ public class dlgSettings extends JDialog {
                 onCancel();
             }
         }, KeyStroke.getKeyStroke(KeyEvent.VK_ESCAPE, 0), JComponent.WHEN_ANCESTOR_OF_FOCUSED_COMPONENT);
+        squareSizeComboBox.addItemListener(new ItemListener() {
+            @Override
+            public void itemStateChanged(ItemEvent e) {
+                if (squareSizeComboBox.getSelectedIndex() == LARGE) {
+                    mazeCheckBox.setEnabled(true);
+                } else {
+                    mazeCheckBox.setSelected(false);
+                    mazeCheckBox.setEnabled(false);
+                }
+            }
+        });
     }
 
     private void onOK() {

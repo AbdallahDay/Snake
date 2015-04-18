@@ -1,6 +1,7 @@
 package abdallah;
 
 import java.awt.Point;
+import java.util.ArrayList;
 import java.util.LinkedList;
 
 /**
@@ -185,6 +186,60 @@ public class Snake {
 			hitWall = true;	
 			SnakeGame.setGameStage(SnakeGame.GAME_OVER);
 			return;
+		}
+
+		//Does this make the snake hit a maze wall?
+		//TODO: this feature doesn't work yet needs more time
+
+		if (SnakeGame.mazeOn) {
+
+			ArrayList<int[]> mazeLines = new ArrayList<int[]>();
+
+			final int X1 = 0;
+			final int Y1 = 1;
+			final int X2 = 2;
+			final int Y2 = 3;
+
+			//get maze line coordinates
+			switch (SnakeGame.squareSize) {
+				case SnakeGame.LARGE_SQUARES: {
+					mazeLines = SnakeGame.largeSquareMazeLines;
+					break;
+				}
+				case SnakeGame.SMALL_SQUARES: {
+
+					break;
+				}
+			}
+
+			switch (currentHeading) {
+				case DIRECTION_UP: {
+					for (int[] line : mazeLines) {
+						if (line[Y1] == line[Y2]) {
+							//line is horizontal
+							if (snakeHeadY <= line[Y1] && snakeHeadX <= line[X1] && snakeHeadX >= line[X2]) {
+								//TODO: this doesn't work for some reason
+								hitWall = true;
+								SnakeGame.setGameStage(SnakeGame.GAME_OVER);
+								return;
+							}
+						}
+					}
+						break;
+				}
+				case DIRECTION_DOWN: {
+
+					break;
+				}
+				case DIRECTION_LEFT: {
+
+					break;
+				}
+				case DIRECTION_RIGHT: {
+
+					break;
+				}
+			}
 		}
 
 		//Does this make the snake eat its tail?

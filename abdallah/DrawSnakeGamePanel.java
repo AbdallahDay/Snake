@@ -118,7 +118,18 @@ public class DrawSnakeGamePanel extends JPanel {
 			//draw maze
 			switch (squareSize) {
 				case SnakeGame.LARGE_SQUARES: {
-
+					for (int[] line : SnakeGame.largeSquareMazeLines) {
+						//Need Graphics2D for varied-width lines
+						Graphics2D g2 = (Graphics2D)g;
+						g2.setColor(Color.BLACK);
+						g2.setStroke(new BasicStroke(4, BasicStroke.CAP_ROUND, BasicStroke.JOIN_ROUND));
+						g2.drawLine(line[0], line[1], line[2], line[3]);	//Array format: {x1, y1, x2, y2}
+					}
+					break;
+				}
+				case SnakeGame.SMALL_SQUARES: {
+					//TODO
+					break;
 				}
 			}
 		}
