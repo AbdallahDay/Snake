@@ -65,7 +65,7 @@ public class DrawSnakeGamePanel extends JPanel {
 
 	private void displayGameWon(Graphics g) {
 		// TODO Replace this with something really special!
-		g.clearRect(100,100,350,350);
+		g.clearRect(100, 100, 350, 350);
 		g.drawString("YOU WON SNAKE!!!", 150, 150);
 		
 	}
@@ -85,7 +85,7 @@ public class DrawSnakeGamePanel extends JPanel {
 		
 		g.drawString("press a key to play again", 150, 350);
 		g.drawString("press 's' to change game settings", 150, 400);
-		g.drawString("Press 'q' to quit the game",150,450);
+		g.drawString("Press 'q' to quit the game", 150, 450);
     			
 	}
 
@@ -113,12 +113,21 @@ public class DrawSnakeGamePanel extends JPanel {
 		for (int x=0; x <= maxX ; x+= squareSize){			
 			g.drawLine(x, 0, x, maxY);
 		}
+
+		if (SnakeGame.mazeOn) {
+			//draw maze
+			switch (squareSize) {
+				case SnakeGame.LARGE_SQUARES: {
+
+				}
+			}
+		}
 	}
 
 	private void displayKibble(Graphics g) {
 
 		//Draw the kibble in green
-		g.setColor(Color.GREEN);
+		g.setColor(kibble.getKibbleColor());
 
 		int x = kibble.getKibbleX() * SnakeGame.squareSize;
 		int y = kibble.getKibbleY() * SnakeGame.squareSize;
@@ -145,10 +154,10 @@ public class DrawSnakeGamePanel extends JPanel {
 	}
 
 	private void displayInstructions(Graphics g) {
-        g.drawString("Press any key to begin!",100,200);
+		g.drawString("Press any key to begin!", 100, 200);
 		g.drawString("press 's' to change game settings", 100, 250);
-        g.drawString("Press 'q' to quit the game",100,300);
-    	}
+		g.drawString("Press 'q' to quit the game", 100, 300);
+	}
 	
     
 }

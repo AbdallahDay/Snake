@@ -10,21 +10,19 @@ public class Score {
 
 	protected static int score;
 	protected static int highScore = 0;
-	protected static int increment;
 	
 	public Score(){
 		score = 0;
-		increment = 1;  //how many points for eating a kibble
-		//Possible TODO get more points for eating kibbles, the longer the snake gets?
+
 	}
 	
 	public static void resetScore() {
 		score = 0;	
 	}
 	
-	public static void increaseScore() {
+	public static void increaseScore(Kibble kibble) {
 		
-		score = score + increment;
+		score += kibble.getPoints();	//score increases depending on kibble type
 		
 	}
 	
@@ -57,7 +55,7 @@ public class Score {
 			return "New High Score!!";
 		} else {
 			return "";
-	}
+		}
 	}
 
 	public String getStringHighScore() {
